@@ -20,9 +20,14 @@ namespace VinylRecordsApplication.Pages.Manufacturer
     /// </summary>
     public partial class Main : Page
     {
+        public IEnumerable<Classes.Manufacturer> AllManufacturers = Classes.Manufacturer.AllManufactures();
         public Main()
         {
             InitializeComponent();
+            foreach(Classes.Manufacturer manufacturer in  AllManufacturers)
+            {
+                manufacterParent.Children.Add(new Manufacturer.Elements.Manufacturer(manufacturer, this))
+            }
         }
     }
 }
