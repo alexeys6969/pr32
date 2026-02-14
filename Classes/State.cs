@@ -51,7 +51,7 @@ namespace VinylRecordsApplication.Classes
 
         public void Delete()
         {
-            DBConnection.Connection("DELETE FROM [dbo].[State] WHERE [Id] = {this.Id};")
+            DBConnection.Connection($"DELETE FROM [dbo].[State] WHERE [Id] = {this.Id};");
         }
     }
 }
