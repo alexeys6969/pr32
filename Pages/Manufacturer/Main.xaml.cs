@@ -26,7 +26,7 @@ namespace VinylRecordsApplication.Pages.Manufacturer
             InitializeComponent();
             foreach(Classes.Manufacturer manufacturer in  AllManufacturers)
             {
-                manufacterParent.Children.Add(new Manufacturer.Elements.Manufacturer(manufacturer, this))
+                manufacterParent.Children.Add(new Manufacturer.Elements.Manufacturer(this, manufacturer));
             }
         }
     }

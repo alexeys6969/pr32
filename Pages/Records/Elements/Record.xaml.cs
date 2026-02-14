@@ -65,13 +65,13 @@ namespace VinylRecordsApplication.Pages.Records.Elements
                 IEnumerable<Classes.Supply> AllSupply = Classes.Supply.AllSupplies();
                 if(AllSupply.Where(x => x.IdRecord == record.Id).Count() > 0)
                 {
-                    MessageBox.Show($"Виниловую пластинку {this.record.Name} невозможно удалить. Для начала удалите зависимости.", "Уведомление")
+                    MessageBox.Show($"Виниловую пластинку {this.record.Name} невозможно удалить. Для начала удалите зависимости.", "Уведомление");
                 }
                 else
                 {
                     this.record.Delete();
                     main.recordsParent.Children.Remove(this);
-                    MessageBox.Show($"Пластинка {this.record.Name} успешно удалена.", "Уведомление")
+                    MessageBox.Show($"Пластинка {this.record.Name} успешно удалена.", "Уведомление");
                 }
             }
         }

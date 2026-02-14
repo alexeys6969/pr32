@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace VinylRecordsApplication.Classes
 {
@@ -88,6 +89,41 @@ namespace VinylRecordsApplication.Classes
         public void Delete()
         {
             DBConnection.Connection($"DELETE FROM [dbo].[Record] WHERE [Id] = {this.Id};");
+        }
+
+        public static void Export(string filePath, IEnumerable<Record> records)
+        {
+            // Загружаем справочники для отображения имён вместо ID
+            var manufacturers = Manufacturer.AllManufactures().ToDictionary(m => m.Id, m => m.Name);
+            var states = State.AllState().ToDictionary(s => s.Id, s => s.Name);
+
+            var csv = new StringBuilder();
+
+            // Заголовки (разделитель — точка с запятой для русскоязычного Excel)
+            csv.AppendLine("\"ID\";\"Название\";\"Год\";\"Формат\";\"Размер\";\"Производитель\";\"Цена\";\"Состояние\";\"Описание\"");
+
+            // Данные
+            foreach (var record in records)
+            {
+                string format = record.Format == 0 ? "Моно" : "Стерео";
+                string manufacturer = manufacturers.TryGetValue(record.IdManufacturer, out var mfr) ? mfr : "Неизвестно";
+                string state = states.TryGetValue(record.IdState, out var st) ? st : "Неизвестно";
+
+                csv.AppendLine(
+                    $"\"{record.Id}\";" +
+                    $"\"{record.Name}\";" +
+                    $"\"{record.Year}\";" +
+                    $"\"{format}\";" +
+                    $"\"{record.Size}\";" +
+                    $"\"{manufacturer}\";" +
+                    $"\"{record.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)}\";" +
+                    $"\"{state}\";" +
+                    $"\"{record.Description}\""
+                );
+            }
+
+            // Сохраняем с UTF-8 BOM для корректного отображения кириллицы в Excel
+            File.WriteAllText(filePath, csv.ToString(), new UTF8Encoding(true));
         }
     }
 }

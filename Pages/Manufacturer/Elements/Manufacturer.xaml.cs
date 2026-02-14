@@ -53,7 +53,7 @@ namespace VinylRecordsApplication.Pages.Manufacturer.Elements
                 {
                     this.manufacturer.Delete();
                     main.manufacterParent.Children.Remove(this);
-                    MessageBox.Show($"Поставщик {this.manufacturer.Name} успешно удален.", "Уведомление", MessageBoxButton.YesNo)
+                    MessageBox.Show($"Поставщик {this.manufacturer.Name} успешно удален.", "Уведомление", MessageBoxButton.YesNo);
                 }
             }
         }

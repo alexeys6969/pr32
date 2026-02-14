@@ -50,7 +50,7 @@ namespace VinylRecordsApplication.Pages.State.Elements
                 {
                     this.state.Delete();
                     main.stateParent.Children.Remove(this);
-                    MessageBox.Show($"Состояние {this.state.Name} успешно удалено.", "Уведомление", MessageBoxButton.YesNo)
+                    MessageBox.Show($"Состояние {this.state.Name} успешно удалено.", "Уведомление", MessageBoxButton.YesNo);
                 }
             }
         }
