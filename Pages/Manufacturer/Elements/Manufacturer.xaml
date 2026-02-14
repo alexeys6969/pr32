@@ -57,7 +57,7 @@
 
                     <Label Content="#Страна:" Margin="10,0,10,0" VerticalAlignment="Top" Grid.Column="1"/>
 
-                    <TextBox x:Name="tbSubname" IsEnabled="False" Margin="10,25,9.8,0" Height="25" TextWrapping="Wrap"
+                    <TextBox x:Name="tbCountry" IsEnabled="False" Margin="10,25,9.8,0" Height="25" TextWrapping="Wrap"
                              VerticalContentAlignment="Center" VerticalAlignment="Top" Padding="10,0" Grid.Column="1">
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="10" Color="Black" Direction="315" ShadowDepth="2" Opacity="0.5"/>
